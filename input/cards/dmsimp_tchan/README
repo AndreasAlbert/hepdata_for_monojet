@@ -1,0 +1,11 @@
+# DMsimp t-channel
+
+For each parameter point, we have split the signal generation into two parts:
+
+1. Final state of two jets + DM pair from mediator pair production (PhiPhiToJJChiChi)
+
+2. Final state of single jet + DM pair, where the jet is from QCD raidation (JChiChi)
+
+the full signal prediction is simply the sum of the two samples. 
+One might also generate them in a single sample for simplicity.
+

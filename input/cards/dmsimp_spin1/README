@@ -1,0 +1,7 @@
+# DMsimp spin-1
+
+In this case, there are six separate sample types: Monojet, mono-Z and mono-W, each with vector and axial couplings, respectively.
+In order to get the full prediction for one parameter point, combine the three samples (monojet, mono-Z and mono-Z).
+
+In addition to the typical cards, we also provide a cuts.f file that implements a madgraph-level cut on the pt of the DM pair system.
+This cut allows to significantly enhance the generation efficiency with respect to the signal selection.
