@@ -30,6 +30,29 @@ def load_histograms(category, year, region, fit):
     
     return histograms
 
+def nice_fit(fit):
+    if fit=='prefit':
+        return "Prefit"
+    elif fit=='fit_b':
+        return "B-only"
+    elif fit=='fit_s':
+        return "S+B"
+
+def nice_region(region):
+    if region=='singlemu':
+        return "Single muon"
+    elif region=='singleel':
+        return "Single electron"
+    elif region=='dimuon':
+        return "Dimuon"
+    elif region=='dielec':
+        return "Dielectron"
+    elif region=='photon':
+        return "Photon"
+    elif region=='signal':
+        return "Signal"
+    else:
+        raise RuntimeError(f"Region not understood: {region}")
 
 def make_yield_tables(sub):
     
@@ -49,7 +72,9 @@ def make_yield_tables(sub):
         'signal'
     ]
     for nice_name, category in categories.items():
-        table = Table(f"Process yields ({nice_name})")
+        table = Table(f"Yields ({nice_name})")
+        table.location="Data from Figs. 3, 4, as well as supplementary material."
+        table.description = "Background and data yields in the control and signal region bins. The prediction before (\"prefit\") and after the background only fit (\"b-only\") are given separately."
         first = True
         for year in [2017, 2018]:
             for region in regions:
@@ -74,9 +99,9 @@ def make_yield_tables(sub):
                         def make_var():
                             yvar = Variable("Yield", is_independent=False, is_binned=False)
                             yvar.add_qualifier("Data set year", year)
-                            yvar.add_qualifier("Category", category)
-                            yvar.add_qualifier("Region", region)
-                            yvar.add_qualifier("Fit", fit)
+                            yvar.add_qualifier("Category", nice_name)
+                            yvar.add_qualifier("Region", nice_region(region))
+                            yvar.add_qualifier("Fit", nice_fit(fit))
                             yvar.add_qualifier("Process", proc)
                             return yvar
 
